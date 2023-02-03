@@ -1,15 +1,15 @@
-﻿@model MovieProject.Domain.ViewModels.Movie.AddInfoViewModel
+﻿@model MovieProject.Domain.ViewModels.Movie.EditInfoViewModel
 @{
     ViewData["Title"] = "Admin Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Add Genre</h1>
+    <h1 class="display-4">Edit Genre</h1>
 </div>
 
 
 
-<form asp-action="Add" method="post"> 
+<form asp-action="Edit" method="post"> 
    <div> 
       <label asp-for="title"></label> 
       <input asp-for="title" /> 

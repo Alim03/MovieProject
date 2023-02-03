@@ -17,15 +17,36 @@ namespace MovieProject.Application.Services.Implementations
             _repository = repository;
         }
 
+        public async Task<Genre?> GetGenreAsync(int id)
+        {
+            return await _repository.GetAsync(id);
+        }
+
+        public async Task<IEnumerable<Genre>> GetAllGenreAsync()
+        {
+            return await _repository.GetAllAsync();
+        }
+
         public async Task AddGenreAsync(Genre genre)
         {
             await _repository.AddAsync(genre);
             await _repository.SaveAsync();
         }
 
-        public async Task<IEnumerable<Genre>> GetAllGenreAsync()
+        public async Task UpdateGenreAsync(Genre genre)
         {
-            return await _repository.GetAllAsync();
+            _repository.Update(genre);
+            await _repository.SaveAsync();
+        }
+
+        public async Task RemoveGenreByIdAsync(int id)
+        {
+            var genre = await _repository.GetAsync(id);
+            if (genre != null)
+            {
+                _repository.Remove(genre);
+                await _repository.SaveAsync();
+            }
         }
 
         public async Task RemoveGenre(Genre genre)

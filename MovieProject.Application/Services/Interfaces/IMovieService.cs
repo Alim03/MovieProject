@@ -8,8 +8,11 @@ namespace MovieProject.Application.Services.Interfaces
 {
     public interface IMovieService
     {
-        Task AddGenreAsync(Genre genre);
-        Task RemoveGenre(Genre genre);
+        Task<Genre?> GetGenreAsync(int id);
         Task<IEnumerable<Genre>> GetAllGenreAsync();
+        Task AddGenreAsync(Genre genre);
+        Task UpdateGenreAsync(Genre genre);
+        Task RemoveGenre(Genre genre);
+        Task RemoveGenreByIdAsync(int id);
     }
 }
