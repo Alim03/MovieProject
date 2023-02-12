@@ -1,14 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.Web", "MovieProject.Web\MovieProject.Web.csproj", "{48F468FA-09E9-44A7-8483-6DCBCAB9A6BD}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject.Web", "MovieProject.Web\MovieProject.Web.csproj", "{48F468FA-09E9-44A7-8483-6DCBCAB9A6BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.Domain", "MovieProject.Domain\MovieProject.Domain.csproj", "{480C89FD-8F12-427F-A814-D77F900E2199}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject.Domain", "MovieProject.Domain\MovieProject.Domain.csproj", "{480C89FD-8F12-427F-A814-D77F900E2199}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.Data", "MovieProject.Data\MovieProject.Data.csproj", "{26BA1716-D469-4334-9D6D-67E515179E35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject.Data", "MovieProject.Data\MovieProject.Data.csproj", "{26BA1716-D469-4334-9D6D-67E515179E35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.Application", "MovieProject.Application\MovieProject.Application.csproj", "{4F29CA0C-7044-4AB8-A551-E841B37495C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject.Application", "MovieProject.Application\MovieProject.Application.csproj", "{4F29CA0C-7044-4AB8-A551-E841B37495C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.Ioc", "MovieProject.Ioc\MovieProject.Ioc.csproj", "{95A1DB3F-A6BE-4E25-A712-4B5B016C9891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieProject.Ioc", "MovieProject.Ioc\MovieProject.Ioc.csproj", "{95A1DB3F-A6BE-4E25-A712-4B5B016C9891}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieProject.WebApi", "MovieProject.WebApi\MovieProject.WebApi.csproj", "{B28282A9-5C84-44E8-8DB7-0FB6CD71B3AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +41,15 @@ Global
 		{95A1DB3F-A6BE-4E25-A712-4B5B016C9891}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A1DB3F-A6BE-4E25-A712-4B5B016C9891}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A1DB3F-A6BE-4E25-A712-4B5B016C9891}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B28282A9-5C84-44E8-8DB7-0FB6CD71B3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B28282A9-5C84-44E8-8DB7-0FB6CD71B3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B28282A9-5C84-44E8-8DB7-0FB6CD71B3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B28282A9-5C84-44E8-8DB7-0FB6CD71B3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0D9777FA-D620-42F6-B334-12CF3BB32429}
 	EndGlobalSection
 EndGlobal
