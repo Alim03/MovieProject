@@ -1,0 +1,21 @@
+﻿@model MovieProject.Domain.ViewModels.Movie.EditInfoViewModel
+@{
+    ViewData["Title"] = "Admin Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Edit Genre</h1>
+</div>
+
+
+
+<form asp-action="Edit" method="post"> 
+   <div> 
+      <label asp-for="title"></label> 
+      <input asp-for="title" /> 
+      <span asp-validation-for="title"></span> 
+   </div> 
+   <div> 
+      <input type = "submit" value = "Save" /> 
+   </div> 
+</form>

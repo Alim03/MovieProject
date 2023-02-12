@@ -12,7 +12,16 @@ namespace MovieProject.Application.Services.Interfaces
         Task<IEnumerable<Genre>> GetAllGenreAsync();
         Task AddGenreAsync(Genre genre);
         Task UpdateGenreAsync(Genre genre);
-        Task RemoveGenre(Genre genre);
         Task RemoveGenreByIdAsync(int id);
+        Task<Country?> GetCountryAsync(int id);
+        Task<IEnumerable<Country>> GetAllCountryAsync();
+        Task AddCountryAsync(Country country);
+        Task UpdateCountryAsync(Country country);
+        Task RemoveCountryByIdAsync(int id);
+        Task<Language?> GetLanguageAsync(int id);
+        Task<IEnumerable<Language>> GetAllLanguageAsync();
+        Task AddLanguageAsync(Language language);
+        Task UpdateLanguageAsync(Language language);
+        Task RemoveLanguageByIdAsync(int id);
     }
 }

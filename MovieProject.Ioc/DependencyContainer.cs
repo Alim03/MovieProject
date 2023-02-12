@@ -15,7 +15,7 @@ namespace MovieProject.Ioc
     {
         public static void AddDependencies(this IServiceCollection services)
         {
-            services.AddScoped<IRepository<Genre>, Repository<Genre>>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IMovieService, MovieService>();
         }
     }
