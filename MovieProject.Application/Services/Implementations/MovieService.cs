@@ -48,11 +48,5 @@ namespace MovieProject.Application.Services.Implementations
                 await _repository.SaveAsync();
             }
         }
-
-        public async Task RemoveGenre(Genre genre)
-        {
-            _repository.Remove(genre);
-            await _repository.SaveAsync();
-        }
     }
 }
