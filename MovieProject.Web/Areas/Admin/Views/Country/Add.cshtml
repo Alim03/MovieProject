@@ -1,0 +1,19 @@
+﻿@model MovieProject.Domain.ViewModels.Movie.AddInfoViewModel
+@{
+   ViewData["Title"] = "Admin Home Page";
+}
+
+<div class="text-center">
+   <h1 class="display-4">Add Genre</h1>
+</div>
+
+<div class="container">
+   <form asp-action="Add" method="post">
+      <div class="form-group">
+         <label asp-for="title">Title</label>
+         <input asp-for="title" class="form-control" id="title" placeholder="Enter title" />
+         <span asp-validation-for="title"></span>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Save" />
+   </form>
+</div>
