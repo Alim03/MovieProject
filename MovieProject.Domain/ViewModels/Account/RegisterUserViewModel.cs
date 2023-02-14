@@ -1,15 +1,10 @@
-﻿namespace MovieProject.WebApi.Dtos
+﻿namespace MovieProject.Domain.ViewModels.Account
 {
-    public class RegisterUserDto
+    public class RegisterUserViewModel
     {
-        public int Id { get; set; }
-
         public string Username { get; set; }
-
         public string Email { get; set; }
-
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
-        public DateTimeOffset CreatedDate { get; set; }
     }
 }
