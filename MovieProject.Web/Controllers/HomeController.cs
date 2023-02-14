@@ -1,19 +1,15 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using MovieProject.Application.Services.Interfaces;
+using MovieProject.Domain.Entities.Account;
 
 namespace MovieProject.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
+
         return View();
     }
 

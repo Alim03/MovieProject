@@ -11,6 +11,8 @@ builder.Services.AddDbContext<MovieProjectDbContext>(
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDependencies();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
 
 var app = builder.Build();
 

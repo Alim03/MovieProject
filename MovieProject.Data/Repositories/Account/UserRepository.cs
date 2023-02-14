@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieProject.Data.Context;
+using MovieProject.Domain.Entities.Account;
+using MovieProject.Domain.Interfaces;
 using MovieProject.Domain.Interfaces.Account;
 using System;
 using System.Collections.Generic;
@@ -9,23 +11,36 @@ using System.Threading.Tasks;
 
 namespace MovieProject.Data.Repositories.Account
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : Repository<User>, IUserRepository
     {
-        protected readonly MovieProjectDbContext _context;
-
-        public UserRepository(MovieProjectDbContext context)
+        public UserRepository(MovieProjectDbContext context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<bool> ChekUserExistsByEmailAsync(string email)
         {
-           return await _context.Users.AnyAsync(a => a.Email == email);
+
+            return await Context.Users.AnyAsync(u => u.Email == email);
         }
 
         public async Task<bool> ChekUserExistsByUserNameAsync(string userName)
         {
-            return await _context.Users.AnyAsync(a => a.Username == userName);
+            return await Context.Users.AnyAsync(u => u.Username == userName);
+        }
+
+        public async Task<User?> GetUserByEmailAsync(string email)
+        {
+           return await Context.Users.FirstOrDefaultAsync(u=> u.Email == email);
+        }
+
+        public  async Task<User?> GetUserByIdAsync(int id)
+        {
+            return await Context.Users.FirstOrDefaultAsync(u => u.Id == id);
+        }
+
+        public async Task<User?> GetUserByUserNameAsync(string userName)
+        {
+            return await Context.Users.FirstOrDefaultAsync(u => u.Username == userName);
         }
     }
 }
