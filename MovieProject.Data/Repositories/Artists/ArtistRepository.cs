@@ -39,7 +39,7 @@ namespace MovieProject.Data.Repositories.Artists
 
         public Artist? GetArtistEagerLoad(int id)
         {
-            return var atis= Context.Artists.Include(a => a.Careers).SingleOrDefault(a => a.Id == id);
+            return  Context.Artists.Include(a => a.Careers).SingleOrDefault(a => a.Id == id);
         }
     }
 }
