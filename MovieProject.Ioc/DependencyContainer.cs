@@ -8,10 +8,12 @@ using MovieProject.Application.Services.Implementations;
 using MovieProject.Application.Services.Interfaces;
 using MovieProject.Data.Repositories;
 using MovieProject.Data.Repositories.Account;
+using MovieProject.Data.Repositories.Artists;
 using MovieProject.Domain.Entities.Account;
 using MovieProject.Domain.Entities.Movie;
 using MovieProject.Domain.Interfaces;
 using MovieProject.Domain.Interfaces.Account;
+using MovieProject.Domain.Interfaces.Artists;
 
 namespace MovieProject.Ioc
 {
@@ -21,8 +23,10 @@ namespace MovieProject.Ioc
         {
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArtistRepository,ArtistRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IArtistService,ArtistService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
 
         }

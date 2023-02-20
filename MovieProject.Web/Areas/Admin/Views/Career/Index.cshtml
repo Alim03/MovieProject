@@ -1,10 +1,10 @@
-﻿@model IEnumerable<MovieProject.Domain.Entities.Movie.Language>
+﻿@model IEnumerable<MovieProject.Domain.Entities.Artists.Career>
 @{
     ViewData["Title"] = "Admin Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Language Index</h1>
+    <h1 class="display-4">Career Index</h1>
 </div>
 
 <div class="container">
@@ -22,7 +22,7 @@
             <tr>
                 <th scope="row">@item.Id</th>
                 <td>
-                    @item.title
+                    @item.Title
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|

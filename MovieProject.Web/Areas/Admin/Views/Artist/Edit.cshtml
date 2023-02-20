@@ -1,0 +1,99 @@
+﻿@model MovieProject.Domain.ViewModels.Artist.EditArtistViewModel
+@{
+   ViewData["Title"] = "Admin Home Page";
+}
+<style>
+   input[type="file"] {
+      display: none;
+   }
+
+   .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      padding: 6px 12px;
+      cursor: pointer;
+   }
+</style>
+
+
+
+<div class="container mt-5">
+   <div class="row">
+      <div class="col-md-6 offset-md-3">
+         <div class="card">
+            <div class="card-body">
+               <h1 class="card-title text-center mb-4">Artist</h1>
+               <form onsubmit="changePhoto()" asp-action="Edit" enctype="multipart/form-data" method="post">
+                  <div class="form-group pb-2">
+                     <label asp-for="Name"></label>
+                     <input asp-for="Name" class="form-control" id="name" />
+                     <span asp-validation-for="Name" class="text-danger"></span>
+                  </div>
+                  <div class="form-group pb-2">
+                     <label for="image" id="imageLabel" asp-for="Image">@Model.ImageName</label>
+                     <input asp-for="ImageName" type="hidden" class="form-control"/>
+
+                     <input onchange="imageFunction()" asp-for="Image" type="file" class="form-control" name="image"
+                        id="image" />
+                     @* <input type="hidden" value="@model.IsImageChanged" type="file" class="form-control" name="image"
+                        id="image" /> *@
+                     <span asp-validation-for="Image" class="text-danger"></span>
+                  </div>
+                  <div class="form-group pb-2">
+                     <label asp-for="BirthDate"></label>
+                     <input asp-for="BirthDate" type="date" class="form-control" id="birthDate" />
+                     <span asp-validation-for="BirthDate" class="text-danger"></span>
+                  </div>
+                  <div class="form-group pb-2">
+                     <label asp-for="Bio"></label>
+                     <textarea asp-for="Bio" class="form-control" id="bio"></textarea>
+                     <span asp-validation-for="Bio" class="text-danger"></span>
+                  </div>
+                  @* <div class="form-group pb-2">
+                     <label asp-for="CareerrId"></label>
+                     <select asp-for="CareerrId" asp-items="Model.Careers" class="form-control" id="bio">
+                     <option>Please Select One</option>
+                     </select>
+                     <span asp-validation-for="CareerrId" class="text-danger"></span>
+                     </div> *@
+
+                  <div class="form-group">
+                     <label>Careers</label>
+                     <select class="form-control" asp-for="SelectedCareerIds" multiple>
+                        @if (Model.Careers != null)
+                        {
+                           @foreach (var option in Model.Careers)
+                           {
+                              <option value="@option.Value">@option.Text</option>
+                           }
+                        }
+
+                     </select>
+                     <span asp-validation-for="SelectedCareerIds" class="text-danger"></span>
+                  </div>
+                  <div class="form-group text-center">
+                     <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+   function imageFunction()
+   {
+      var image = document.getElementById("image");
+      var imageLable = document.getElementById("imageLabel");
+
+      imageLable.innerHTML = image.value.repl;
+   }
+   function changePhoto()
+   {
+
+   }
+   @* var file = document.getElementById('image');
+      console.log(file.files.name);
+      alert(file.files.name)
+      file.files[0].name='ChangedName.tmp' *@
+</script>

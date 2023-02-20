@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MovieProject.Data.Context;
 
@@ -11,9 +12,11 @@ using MovieProject.Data.Context;
 namespace MovieProject.Data.Migrations
 {
     [DbContext(typeof(MovieProjectDbContext))]
-    partial class MovieProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230216171700_ChangeArtistImageField")]
+    partial class ChangeArtistImageField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("CareersId");
 
-                    b.ToTable("ArtistCareer", (string)null);
+                    b.ToTable("ArtistCareer");
                 });
 
             modelBuilder.Entity("ArtistMovie", b =>
@@ -49,7 +52,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("ArtistMovie", (string)null);
+                    b.ToTable("ArtistMovie");
                 });
 
             modelBuilder.Entity("CountryMovie", b =>
@@ -64,7 +67,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("CountryMovie", (string)null);
+                    b.ToTable("CountryMovie");
                 });
 
             modelBuilder.Entity("GenreMovie", b =>
@@ -79,7 +82,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("GenreMovie", (string)null);
+                    b.ToTable("GenreMovie");
                 });
 
             modelBuilder.Entity("LanguageMovie", b =>
@@ -94,7 +97,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("MoviesId");
 
-                    b.ToTable("LanguageMovie", (string)null);
+                    b.ToTable("LanguageMovie");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Account.User", b =>
@@ -128,7 +131,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Artists.Artist", b =>
@@ -157,7 +160,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Artists", (string)null);
+                    b.ToTable("Artists");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Artists.Career", b =>
@@ -174,7 +177,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Careers", (string)null);
+                    b.ToTable("Careers");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.Comment", b =>
@@ -205,7 +208,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.Country", b =>
@@ -223,7 +226,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Countries", (string)null);
+                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.File", b =>
@@ -250,7 +253,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("Files", (string)null);
+                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.Genre", b =>
@@ -268,7 +271,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.Language", b =>
@@ -286,7 +289,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("MovieProject.Domain.Entities.Movie.Movie", b =>
@@ -324,7 +327,7 @@ namespace MovieProject.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Movies", (string)null);
+                    b.ToTable("Movies");
                 });
 
             modelBuilder.Entity("ArtistCareer", b =>

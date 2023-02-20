@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace MovieProject.Domain.Entities.Artists
 {
@@ -9,7 +11,6 @@ namespace MovieProject.Domain.Entities.Artists
         [MaxLength(64)]
         public string Name { get; set; }
 
-        [MaxLength(128)]
         public string? Image { get; set; }
         public DateTime BirthDate { get; set; }
 
