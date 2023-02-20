@@ -24,9 +24,15 @@ namespace MovieProject.Application.Services.Implementations
             _passwordHasher = passwordHasher;
         }
 
+   
         public async Task<User?> GetUserByEmailAsync(string email)
         {
           return  await _userRepository.GetUserByEmailAsync(email);
+        }
+
+        public async Task<User?> GetUserByEmailOrUserNameAsync(string input)
+        {
+           return await _userRepository.GetUserByEmailOrUserNameAsync(input);
         }
 
         public async Task<User?> GetUserByUserNameAsync(string userName)
@@ -36,21 +42,21 @@ namespace MovieProject.Application.Services.Implementations
 
         public async Task<LoginUserResult> LoginUser(LoginUserViewModel user)
         {
-            var getUserByEmail = await _userRepository.GetUserByEmailAsync(user.Email);
+            var getUserByEmail = await _userRepository.GetUserByEmailAsync(user.Input);
             if (getUserByEmail == null)
             {
-                var getUserByUserName = await _userRepository.GetUserByUserNameAsync(user.Username);
-                if (getUserByEmail == null)
+                var getUserByUserName = await _userRepository.GetUserByUserNameAsync(user.Input);
+                if (getUserByUserName == null)
                 {
                     return LoginUserResult.NotFound;
                 }
-                if (_passwordHasher.EncodePasswordMd5(getUserByEmail.Password) != _passwordHasher.EncodePasswordMd5(user.Password))
+                if (getUserByUserName.Password != _passwordHasher.EncodePasswordMd5(user.Password))
                 {
                     return LoginUserResult.WrongPassword;
                 }
                 return LoginUserResult.Success;
             }
-           if(_passwordHasher.EncodePasswordMd5(getUserByEmail.Password) != _passwordHasher.EncodePasswordMd5(user.Password))
+           if(getUserByEmail.Password!= _passwordHasher.EncodePasswordMd5(user.Password))
             {
                 return LoginUserResult.WrongPassword;
             }
@@ -72,6 +78,11 @@ namespace MovieProject.Application.Services.Implementations
             await _userRepository.AddAsync(user);
             await _userRepository.SaveAsync();
             return RegisterUserResult.Success;
+        }
+
+        bool IUserService.ChekUserIsAdmin(int userId)
+        {
+            return _userRepository.ChekUserIsAdmin(userId);
         }
     }
 }

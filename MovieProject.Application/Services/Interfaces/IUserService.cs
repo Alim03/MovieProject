@@ -15,6 +15,8 @@ namespace MovieProject.Application.Services.Interfaces
         Task<LoginUserResult> LoginUser(LoginUserViewModel user);
         Task<User?> GetUserByUserNameAsync(string userName);
         Task<User?> GetUserByEmailAsync(string email);
+        Task<User?> GetUserByEmailOrUserNameAsync(string input);    
+        bool ChekUserIsAdmin(int userId);    
 
 
     }

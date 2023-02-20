@@ -8,8 +8,7 @@ namespace MovieProject.Domain.ViewModels.Account
 {
     public class LoginUserViewModel
     {
-        public string Username { get; set; }
-        public string Email { get; set; }
+        public string Input { get; set; } // Email  Password
         public string Password { get; set; }
     }
 }

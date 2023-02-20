@@ -28,9 +28,25 @@ namespace MovieProject.Data.Repositories.Account
             return await Context.Users.AnyAsync(u => u.Username == userName);
         }
 
+        public bool ChekUserIsAdmin(int userId)
+        {
+            var user =  Context.Users.FirstOrDefault(p => p.Id == userId);
+            if (user.IsAdmin)
+            {
+                return true;
+            }
+            return false;
+
+        }
+
         public async Task<User?> GetUserByEmailAsync(string email)
         {
            return await Context.Users.FirstOrDefaultAsync(u=> u.Email == email);
+        }
+
+        public async Task<User?> GetUserByEmailOrUserNameAsync(string input)
+        {
+            return await Context.Users.Where(p=>p.Username== input || p.Email == input).FirstOrDefaultAsync();
         }
 
         public  async Task<User?> GetUserByIdAsync(int id)

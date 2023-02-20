@@ -14,5 +14,10 @@ namespace MovieProject.Domain.Interfaces.Account
         Task<User?> GetUserByUserNameAsync(string userName);
         Task<User?> GetUserByEmailAsync(string email);
         Task<User?> GetUserByIdAsync(int id);
+        Task<User?> GetUserByEmailOrUserNameAsync(string input);
+        bool ChekUserIsAdmin(int userId);
+
+
+
     }
 }

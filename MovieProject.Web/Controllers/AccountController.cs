@@ -1,11 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using MovieProject.Application.Security.PasswordHelper;
 using MovieProject.Application.Services.Interfaces;
 using MovieProject.Domain.Entities.Account;
 using MovieProject.Domain.ViewModels.Account;
+using NuGet.Protocol.Plugins;
+using System.Security.Claims;
+using MovieProject.Domain.ViewModels.Common;
+using MovieProject.Web.HttpHandler;
 
 namespace MovieProject.Web.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly IUserService _userService;
@@ -15,14 +22,40 @@ namespace MovieProject.Web.Controllers
             _userService = userService;
             _passwordHasher = passwordHasher;
         }
-
-        public IActionResult Account()
+        public async Task<IActionResult> Account()
         {
-            return View();
-        }
+            try
+            {
+                var userEmail = HttpContext.User.GetUserEmail();
+                if (userEmail == null)
+                {
+                    return View();
+                }
+                var user = await _userService.GetUserByEmailAsync(userEmail);
+                UserProfileViewModel userProfile = new UserProfileViewModel
+                {
+                    Email = user.Email,
+                    UserName = user.Username
+                };
+                var userProfileViewModel = new LoginUserResponseViewModel()
+                {
+                    userProfileViewModel = userProfile
+                };
+                return View(userProfileViewModel);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
+        }
+        public IActionResult SignOut()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("Account", "Account");
+        }
         [HttpPost]
-        public async Task<IActionResult> RegisterUser( RegisterUserViewModel request)
+        public async Task<IActionResult> RegisterUser(RegisterUserViewModel request)
         {
             try
             {
@@ -51,30 +84,48 @@ namespace MovieProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet]
+        [PermissionChecker]
         public IActionResult Index()
         {
-            return View();
+            var aaa = HttpContext.User.GetUserEmail();
+            return View(aaa);
         }
-
         [HttpPost]
         public async Task<IActionResult> LoginUser(LoginUserViewModel request)
         {
             try
             {
-                if(request != null)
+
+                if (request != null)
                 {
-                var result = await _userService.LoginUser(request);
+                    var result = await _userService.LoginUser(request);
+                    
                     switch (result)
                     {
                         case Domain.Enums.LoginUserResult.WrongPassword:
-                            break; 
+                            var responseViewModel = new ResponseViewModel { IsSuccessFull = false, Message = ErrorsMessages.UserNotfound };
+                            //responseViewModel.ResponseViewModel = result2;
+                            var loginUserResponseViewModel = new LoginUserResponseViewModel() { ResponseViewModel= responseViewModel };
+                            //responseViewModel.LoginUserViewModel=
+                            return View("Account", loginUserResponseViewModel);
                         case Domain.Enums.LoginUserResult.NotFound:
-                            break;
                         case Domain.Enums.LoginUserResult.Success:
-                            return View();
-                            break;// Claim TODO
-                        default:
-                            break;
+                            var user = await _userService.GetUserByEmailOrUserNameAsync(request.Input);
+                            var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Email,user.Email),
+                            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())
+                        };
+
+                            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            var principal = new ClaimsPrincipal(identity);
+                            var properties = new AuthenticationProperties
+                            {
+                                IsPersistent = true
+                            };
+                            HttpContext.SignInAsync(principal, properties);
+                            return RedirectToAction("index", "home");
                     }
                     return View();
                 }
@@ -86,5 +137,13 @@ namespace MovieProject.Web.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+
+        [HttpGet]
+        public IActionResult LoginUser()
+        {
+            return RedirectToAction("Account","Account");
+        }
+
     }
 }

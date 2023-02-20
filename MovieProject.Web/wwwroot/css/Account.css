@@ -1,6 +1,6 @@
 ﻿body {
     font-family: "Karla", sans-serif;
-    background-color: #292929 !important;
+    background-color: #FFF !important;
     min-height: 100vh;
 }
 
@@ -221,4 +221,21 @@ body {
         }
     }
 }
+
+
+/*.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+}*/
+
+
+#logout:hover {
+    color: #ff4642;
+}
+
+
+
+
+ 
 
