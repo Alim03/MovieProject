@@ -50,7 +50,7 @@ namespace MovieProject.Data.Repositories
             entities.Remove(entity);
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             entities.Update(entity);
         }

@@ -1,6 +1,6 @@
-﻿@model MovieProject.Domain.ViewModels.Movie.EditInfoViewModel
+﻿@model MovieProject.Domain.ViewModels.Movie.AddInfoViewModel
 @{
-    ViewData["Title"] = "Admin Home Page";
+   ViewData["Title"] = "Admin Home Page";
 }
 
 
@@ -10,10 +10,10 @@
       <div class="col-md-6 offset-md-3">
          <div class="card">
             <div class="card-body">
-               <h1 class="card-title text-center mb-4">Country</h1>
-               <form asp-action="Edit" method="post">
+               <h1 class="card-title text-center mb-4">Career</h1>
+               <form asp-action="Add" method="post">
                   <div class="form-group pb-2">
-                     <input asp-for="title" class="form-control" id="title" placeholder="Enter Country" />
+                     <input asp-for="title" class="form-control" id="title" placeholder="Enter Career" />
                      <span asp-validation-for="title"></span>
                   </div>
                   <div class="form-group text-center">
