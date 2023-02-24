@@ -58,6 +58,7 @@ namespace MovieProject.Web.Areas.Admin.Controllers
                 var careers = await _artistService.WhereCareerContainsAsync(
                     artistViewModel.SelectedCareerIds
                 );
+
                 string? imageName = null;
                 if (artistViewModel.Image != null)
                 {

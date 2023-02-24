@@ -1,0 +1,117 @@
+﻿@model MovieProject.Domain.ViewModels.Movie.AddMovieViewModel
+@{
+    ViewData["Title"] = "Admin Home Page";
+}
+@* <style>
+   input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+</style> *@
+
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Artist</h1>
+                    <form asp-action="AddMovie" enctype="multipart/form-data" method="post">
+                        <div class="form-group pb-2">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" class="form-control" id="Title" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-2">
+                            <label for="image" asp-for="Image"></label>
+                            <input asp-for="Image" type="file" class="form-control" name="image" id="image" />
+                            <span asp-validation-for="Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-2">
+                            <label asp-for="CreatedDate"></label>
+                            <input asp-for="CreatedDate" type="date" class="form-control" id="birthDate" />
+                            <span asp-validation-for="CreatedDate" class="text-danger"></span>
+                        </div>
+                              <div class="form-group pb-2">
+                            <label asp-for="ReleasedDate"></label>
+                            <input asp-for="ReleasedDate" type="date" class="form-control" id="ReleasedDate" />
+                            <span asp-validation-for="ReleasedDate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-2">
+                            <label asp-for="Summary"></label>
+                            <textarea asp-for="Summary" class="form-control" id="bio"></textarea>
+                            <span asp-validation-for="Summary" class="text-danger"></span>
+                        </div>
+                           <div class="form-group pb-2">
+                            <label asp-for="Time"></label>
+                            <textarea asp-for="Time" class="form-control" id="bio"></textarea>
+                            <span asp-validation-for="Time" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Artist</label>
+                            <select class="form-control" asp-for="SelectedArtistsIds" multiple>
+                                @foreach (var option in Model.Artists)
+                                {
+                                    <option value="@option.Value">@option.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedArtistsIds" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" asp-for="SelectedCountryIds" multiple>
+                                @foreach (var option in Model.Country)
+                                {
+                                    <option value="@option.Value">@option.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedCountryIds" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Genre</label>
+                            <select class="form-control" asp-for="SelectedGenreIds" multiple>
+                                @foreach (var option in Model.Genre)
+                                {
+                                    <option value="@option.Value">@option.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedGenreIds" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Languages</label>
+                            <select class="form-control" asp-for="SelectedLanguagesIds" multiple>
+                                @foreach (var option in Model.Languages)
+                                {
+                                    <option value="@option.Value">@option.Text</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedLanguagesIds" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@* <script>
+   var file = document.getElementById('image');
+   console.log(file.files.name);
+   alert(file.files.name)
+   file.files[0].name='ChangedName.tmp'
+   </script> *@

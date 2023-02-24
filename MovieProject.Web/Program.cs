@@ -12,9 +12,10 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddDependencies();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -40,7 +41,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+});
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
