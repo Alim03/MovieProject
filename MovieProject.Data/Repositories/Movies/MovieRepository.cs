@@ -41,7 +41,10 @@ namespace MovieProject.Data.Repositories.Movies
                 MovieInDb.Summary = movie.Summary;
                 MovieInDb.CreatedDate = movie.CreatedDate;
                 MovieInDb.ReleasedDate = movie.ReleasedDate;
-          
+                MovieInDb.Artists.Clear();
+                MovieInDb.Countries.Clear();
+                MovieInDb.Genres.Clear();
+                MovieInDb.Languages.Clear();
                 foreach (var artist in movie.Artists)
                 {
                     MovieInDb.Artists.Add(artist);
