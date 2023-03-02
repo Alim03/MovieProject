@@ -1,0 +1,48 @@
+﻿@model MovieProject.Domain.ViewModels.Account.UsersListViewModel
+@{
+    ViewData["Title"] = "Admin Home Page";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title text-center mb-4">Movie</h1>
+                    <form onsubmit="changePhoto()" asp-action="Edit" enctype="multipart/form-data" method="post">
+                        <div class="form-group pb-2">
+                            <label asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control" id="name" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Is Active</label>
+                            <select class="form-control" asp-for="IsActive">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                            <span asp-validation-for="IsActive" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Is Admin</label>
+                            <select class="form-control" asp-for="IsAdmin">
+                                <option value="True">True</option>
+                                <option value="False">False</option>
+                            </select>
+                            <span asp-validation-for="IsAdmin" class="text-danger"></span>
+                        </div>
+                        <div class="form-group pb-2">
+                            <label asp-for="Email"></label>
+                            <input type="text" asp-for="Email" class="form-control" id="Summary"></input>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

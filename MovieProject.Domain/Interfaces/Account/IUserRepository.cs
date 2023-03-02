@@ -10,6 +10,7 @@ namespace MovieProject.Domain.Interfaces.Account
     public interface IUserRepository :IRepository<User>
     {
         Task<bool> ChekUserExistsByEmailAsync(string email);
+        Task<IEnumerable<User>> GetAllUsersAsync();
         Task<bool> ChekUserExistsByUserNameAsync(string userName);
         Task<User?> GetUserByUserNameAsync(string userName);
         Task<User?> GetUserByEmailAsync(string email);

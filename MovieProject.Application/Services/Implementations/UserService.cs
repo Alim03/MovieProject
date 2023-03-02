@@ -1,6 +1,7 @@
 ﻿using MovieProject.Application.Security.PasswordHelper;
 using MovieProject.Application.Services.Interfaces;
 using MovieProject.Domain.Entities.Account;
+using MovieProject.Domain.Entities.Movie;
 using MovieProject.Domain.Enums;
 using MovieProject.Domain.Interfaces;
 using MovieProject.Domain.Interfaces.Account;
@@ -24,15 +25,29 @@ namespace MovieProject.Application.Services.Implementations
             _passwordHasher = passwordHasher;
         }
 
-   
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+            return await _userRepository.GetAllUsersAsync();
+        }
+
         public async Task<User?> GetUserByEmailAsync(string email)
         {
-          return  await _userRepository.GetUserByEmailAsync(email);
+            return await _userRepository.GetUserByEmailAsync(email);
         }
 
         public async Task<User?> GetUserByEmailOrUserNameAsync(string input)
         {
-           return await _userRepository.GetUserByEmailOrUserNameAsync(input);
+            return await _userRepository.GetUserByEmailOrUserNameAsync(input);
+        }
+
+        public async Task<User?> GetUserByIdAsync(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if (user != null)
+            {
+                return user;
+            }
+            return null;
         }
 
         public async Task<User?> GetUserByUserNameAsync(string userName)
@@ -56,7 +71,7 @@ namespace MovieProject.Application.Services.Implementations
                 }
                 return LoginUserResult.Success;
             }
-           if(getUserByEmail.Password!= _passwordHasher.EncodePasswordMd5(user.Password))
+            if (getUserByEmail.Password != _passwordHasher.EncodePasswordMd5(user.Password))
             {
                 return LoginUserResult.WrongPassword;
             }
@@ -78,6 +93,25 @@ namespace MovieProject.Application.Services.Implementations
             await _userRepository.AddAsync(user);
             await _userRepository.SaveAsync();
             return RegisterUserResult.Success;
+        }
+
+        public async Task RemoveUserByIdAsync(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            if (user != null)
+            {
+                user.IsActive = false;
+                _userRepository.Update(user);
+                await _userRepository.SaveAsync();
+            }
+
+        }
+
+        public async Task UpdateUser(User user) 
+        {
+
+            _userRepository.Update(user);
+            await _userRepository.SaveAsync();
         }
 
         bool IUserService.ChekUserIsAdmin(int userId)

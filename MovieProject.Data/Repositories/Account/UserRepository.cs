@@ -39,6 +39,11 @@ namespace MovieProject.Data.Repositories.Account
 
         }
 
+        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        {
+           return await Context.Users.OrderByDescending(a=>a.CreatedDate).ToListAsync();
+        }
+
         public async Task<User?> GetUserByEmailAsync(string email)
         {
            return await Context.Users.FirstOrDefaultAsync(u=> u.Email == email);
